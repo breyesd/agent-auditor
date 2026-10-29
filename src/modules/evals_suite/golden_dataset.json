@@ -1,0 +1,244 @@
+{
+  "casos": [
+    {
+      "id": "C001",
+      "tipo": "vulnerable",
+      "entrada": "import os; os.system(request.GET['cmd'])",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "critica",
+      "descripcion": "Inyeccion de comandos via os.system"
+    },
+    {
+      "id": "C002",
+      "tipo": "vulnerable",
+      "entrada": "cursor.execute(f'SELECT * FROM users WHERE id = {user_id}')",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "alta",
+      "descripcion": "SQL injection por concatenacion de string"
+    },
+    {
+      "id": "C003",
+      "tipo": "vulnerable",
+      "entrada": "eval(input('Ingresa codigo: '))",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "critica",
+      "descripcion": "Ejecucion de codigo arbitrario con eval"
+    },
+    {
+      "id": "C004",
+      "tipo": "estandar",
+      "entrada": "Clase sin docstring y metodo de 100 lineas",
+      "esperado_tipo": "estilo",
+      "esperado_severidad": "media",
+      "descripcion": "Falta de documentacion y metodo muy largo"
+    },
+    {
+      "id": "C005",
+      "tipo": "estandar",
+      "entrada": "password = 'hardcoded_secret_123'",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "alta",
+      "descripcion": "Contrasena hardcodeada en el codigo"
+    },
+    {
+      "id": "C006",
+      "tipo": "conflicto",
+      "entrada": "Usar try/except sin capturar excepcion especifica",
+      "esperado_tipo": "estilo",
+      "esperado_severidad": "baja",
+      "descripcion": "Excepcion demasiado amplia en except"
+    },
+    {
+      "id": "C007",
+      "tipo": "vulnerable",
+      "entrada": "yaml.load(entrada_usuario)",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "alta",
+      "descripcion": "Carga YAML no segura con yaml.load"
+    },
+    {
+      "id": "C008",
+      "tipo": "vulnerable",
+      "entrada": "subprocess.run(cmd, shell=True)",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "alta",
+      "descripcion": "Ejecucion de shell con shell=True"
+    },
+    {
+      "id": "C009",
+      "tipo": "estandar",
+      "entrada": "def funcion(a,b,c,d,e,f,g,h,i,j): pass",
+      "esperado_tipo": "estilo",
+      "esperado_severidad": "media",
+      "descripcion": "Funcion con demasiados parametros"
+    },
+    {
+      "id": "C010",
+      "tipo": "vulnerable",
+      "entrada": "pickle.load(archivo_entrada)",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "alta",
+      "descripcion": "Deserializacion insegura con pickle"
+    },
+    {
+      "id": "C011",
+      "tipo": "conflicto",
+      "entrada": "Variable no usada en archivo de test",
+      "esperado_tipo": "estilo",
+      "esperado_severidad": "baja",
+      "descripcion": "Variable no usada, excluida en tests"
+    },
+    {
+      "id": "C012",
+      "tipo": "vulnerable",
+      "entrada": "open(entrada_usuario).read()",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "media",
+      "descripcion": "Lectura de archivo con ruta controlada por usuario"
+    },
+    {
+      "id": "C013",
+      "tipo": "estandar",
+      "entrada": "x=1;y=2;z=x+y",
+      "esperado_tipo": "estilo",
+      "esperado_severidad": "baja",
+      "descripcion": "Multiple statements en una linea"
+    },
+    {
+      "id": "C014",
+      "tipo": "conflicto",
+      "entrada": "Uso de print para depuracion en codigo produccion",
+      "esperado_tipo": "estilo",
+      "esperado_severidad": "baja",
+      "descripcion": "Print statements no eliminados"
+    },
+    {
+      "id": "C015",
+      "tipo": "vulnerable",
+      "entrada": "subprocess.call(entrada, shell=True)",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "critica",
+      "descripcion": "Inyeccion de comandos via subprocess con shell"
+    },
+    {
+      "id": "C016",
+      "tipo": "vulnerable",
+      "entrada": "@app.route('/<path:filename>')\ndef serve_file(filename):\n    return open(filename).read()",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "critica",
+      "descripcion": "Path traversal por nombre de archivo no validado"
+    },
+    {
+      "id": "C017",
+      "tipo": "estandar",
+      "entrada": "clase sin tipos de retorno en metodos publicos",
+      "esperado_tipo": "estilo",
+      "esperado_severidad": "baja",
+      "descripcion": "Falta de type hints en API publica"
+    },
+    {
+      "id": "C018",
+      "tipo": "vulnerable",
+      "entrada": "jwt.decode(token, options={'verify_signature': False})",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "alta",
+      "descripcion": "Validacion de JWT desactivada"
+    },
+    {
+      "id": "C019",
+      "tipo": "estandar",
+      "entrada": "Modulo de 500 lineas sin division en submodulos",
+      "esperado_tipo": "estilo",
+      "esperado_severidad": "media",
+      "descripcion": "Modulo demasiado grande, falta de modularidad"
+    },
+    {
+      "id": "C020",
+      "tipo": "conflicto",
+      "entrada": "Regla de seguridad contradice guia de estilo del equipo",
+      "esperado_tipo": "cumplimiento",
+      "esperado_severidad": "media",
+      "descripcion": "Conflicto entre regla de seguridad y estilo"
+    },
+    {
+      "id": "C021",
+      "tipo": "vulnerable",
+      "entrada": "deserialize(entrada_usuario) sin validacion",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "alta",
+      "descripcion": "Deserializacion sin validacion de entrada"
+    },
+    {
+      "id": "C022",
+      "tipo": "vulnerable",
+      "entrada": "logging.debug(contraseña_usuario)",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "media",
+      "descripcion": "Secreto registrado en logs"
+    },
+    {
+      "id": "C023",
+      "tipo": "estandar",
+      "entrada": "Nombres de variables en español mezclados con ingles",
+      "esperado_tipo": "estilo",
+      "esperado_severidad": "baja",
+      "descripcion": "Inconsistencia en nomenclatura de variables"
+    },
+    {
+      "id": "C024",
+      "tipo": "vulnerable",
+      "entrada": "redirect(url_entrada_usuario)",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "media",
+      "descripcion": "Open redirect por URL no validada"
+    },
+    {
+      "id": "C025",
+      "tipo": "vulnerable",
+      "entrada": "SECRET_KEY = 'dev-secret-key-not-for-production'",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "alta",
+      "descripcion": "Clave secreta en entorno de desarrollo filtrada"
+    },
+    {
+      "id": "C026",
+      "tipo": "conflicto",
+      "entrada": "Usuario solicita no reportar advertencias en archivos de test",
+      "esperado_tipo": "estilo",
+      "esperado_severidad": "baja",
+      "descripcion": "Regla de exclusión para tests"
+    },
+    {
+      "id": "C027",
+      "tipo": "vulnerable",
+      "entrada": "tempfile.mktemp() sin validacion",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "media",
+      "descripcion": "Crea archivo temporal de forma insegura"
+    },
+    {
+      "id": "C028",
+      "tipo": "estandar",
+      "entrada": "Funcion con complejidad ciclomatica mayor a 10",
+      "esperado_tipo": "estilo",
+      "esperado_severidad": "media",
+      "descripcion": "Complejidad ciclomatica elevada"
+    },
+    {
+      "id": "C029",
+      "tipo": "vulnerable",
+      "entrada": "hashlib.md5(contrasena).hexdigest()",
+      "esperado_tipo": "seguridad",
+      "esperado_severidad": "alta",
+      "descripcion": "Uso de hash MD5 para contraseñas"
+    },
+    {
+      "id": "C030",
+      "tipo": "conflicto",
+      "entrada": "Directriz de RAG contradice hallazgo de analizador estatico",
+      "esperado_tipo": "cumplimiento",
+      "esperado_severidad": "media",
+      "descripcion": "Conflicto entre fuente RAG y herramienta MCP"
+    }
+  ]
+}

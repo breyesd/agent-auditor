@@ -1,0 +1,36 @@
+# Entorno y dependencias
+.venv/
+.env
+__pycache__/
+*.py[c]
+*.pyo
+*.pyd
+
+# Pruebas y cobertura
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.xml
+
+# Type checking / linting caches
+.mypy_cache/
+.ruff_cache/
+.pyright/
+
+# Datos locales de la aplicación (vector store, checkpoints, perfiles)
+data/
+
+# Editores / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Artefactos accidentales de pip (salida mal redirigida)
+=*.*.*

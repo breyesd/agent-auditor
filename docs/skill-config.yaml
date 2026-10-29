@@ -1,0 +1,25 @@
+version: 1
+proyecto:
+  nombre: agent-auditor
+  stack: python/langgraph
+modelos:
+  especificar-general: nemotron
+  especificar-especifica: nemotron
+  definir-hu: nemotron
+  definir-tarea: deepseek
+  implementar: deepseek
+  testear: gemma
+  revisar: nemotron
+  desplegar: gemma
+artefactos:
+  raiz: docs/
+  subcarpetas:
+    especificaciones: docs/especificaciones/
+    historias: docs/historias/
+    tareas: docs/tareas/
+    disenos: docs/disenos/
+gates:
+  bloquear_entre_etapas: true
+  requiere_aprobacion_explicita: true
+iteracion:
+  por_fase: true
