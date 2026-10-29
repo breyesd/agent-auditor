@@ -16,6 +16,7 @@ from mcp.server.models import InitializationOptions
 from mcp.server.stdio import stdio_server
 from mcp.types import TextContent, Tool
 
+from .tools.ast_file_inspector import ast_file_inspector
 from .tools.get_git_diff import get_git_diff
 from .tools.read_source_file import read_source_file
 from .tools.run_static_analysis import run_static_analysis
@@ -75,6 +76,19 @@ register_tool(
         },
     },
     handler=run_static_analysis,
+)
+
+register_tool(
+    name="ast_file_inspector",
+    description="Inspecciona un archivo Python usando AST y retorna metricas estructurales",
+    input_schema={
+        "type": "object",
+        "required": ["ruta_archivo"],
+        "properties": {
+            "ruta_archivo": {"type": "string", "description": "Ruta al archivo Python a inspeccionar"},
+        },
+    },
+    handler=ast_file_inspector,
 )
 
 

@@ -29,6 +29,7 @@ from agent_harness.observabilidad import Observabilidad
 from agent_harness.state_machine import MAX_ITERACIONES, AuditorHarness
 from evals_suite.suite import EvalsSuite
 from mcp_server.server import _TOOLS, register_tool
+from mcp_server.tools.ast_file_inspector import ast_file_inspector
 from mcp_server.tools.get_git_diff import get_git_diff
 from mcp_server.tools.run_static_analysis import run_static_analysis
 from memory_store.perfil_store import ExtractorHechos, PerfilStore, TriplaSemantica
@@ -352,3 +353,58 @@ def test_vector_store_proveedor_no_soportado():
     store = VectorStore(config)
     with pytest.raises(ValueError):
         store._ensure_client()
+
+
+# ---------------- AST File Inspector ----------------
+
+def test_ast_file_inspector_valido(tmp_path):
+    archivo = tmp_path / "ejemplo.py"
+    archivo.write_text(
+        '"""Modulo de ejemplo"""\n'
+        "import os\n"
+        "from sys import path\n"
+        "\n"
+        "class MiClase:\n"
+        "    \"\"\"Docstring de clase.\"\"\"\n"
+        "\n"
+        "    def metodo(self, x):\n"
+        "        if x > 0:\n"
+        "            return x\n"
+        "        else:\n"
+        "            return 0\n"
+        "\n"
+        "def funcion_global(a, b):\n"
+        "    try:\n"
+        "        return a + b\n"
+        "    except Exception:\n"
+        "        return None\n"
+    )
+
+    resultado = ast_file_inspector({"ruta_archivo": str(archivo)})
+    assert resultado["exito"] is True
+    datos = resultado["datos"]
+    assert datos["clases"] == 1
+    assert datos["funciones"] == 2  # metodo + funcion_global
+    assert datos["imports"] == 2
+    assert datos["complejidad_ciclomatica"] >= 3
+    assert datos["docstring_modulo"] == "Modulo de ejemplo"
+
+
+def test_ast_file_inspector_archivo_inexistente():
+    resultado = ast_file_inspector({"ruta_archivo": "/no/existe.py"})
+    assert resultado["exito"] is False
+    assert "error" in resultado
+
+
+def test_ast_file_inspector_error_sintaxis(tmp_path):
+    archivo = tmp_path / "malo.py"
+    archivo.write_text("def foo(:\n    pass\n")
+    resultado = ast_file_inspector({"ruta_archivo": str(archivo)})
+    assert resultado["exito"] is False
+    assert "Error de sintaxis" in resultado["error"]
+
+
+def test_ast_file_inspector_sin_ruta():
+    resultado = ast_file_inspector({})
+    assert resultado["exito"] is False
+    assert "ruta_archivo es requerido" in resultado["error"]

@@ -82,7 +82,7 @@ Todos los componentes se comunican mediante esquemas JSON estrictos:
 - `RagContext` — contexto recuperado del motor RAG
 - `McpToolResult` — resultado de herramienta MCP
 
-## Flujo de Desarrollo (Flujo Ágil)
+## Flujo de Desarrollo
 
 El proyecto sigue el flujo ágil modular con 11 etapas:
 

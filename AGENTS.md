@@ -79,7 +79,7 @@ python3 -m src.modules.agent_harness.cli auditar <archivo> [--diff "..."] [--jso
 - Linter configurado: `ruff` (reglas por defecto + I, UP, DTZ, TRY, BLE, PLW)
 - Máximo 6 iteraciones en el bucle de razonamiento del harness (guardrail)
 
-## Flujo de trabajo (Flujo Ágil modular)
+## Flujo de trabajo
 
 El proyecto sigue 11 etapas con puertas de bloqueo entre etapas:
 
